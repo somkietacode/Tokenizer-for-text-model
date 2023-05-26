@@ -9,8 +9,9 @@ Install the required dependencies using pip:
 Run the following command in the terminal or command prompt:
 ```bash
 pip install sentencepiece
-This command will install the sentencepiece library, which is required for the Tokenizer class.
 ```
+This command will install the sentencepiece library, which is required for the Tokenizer class.
+
 
 ## How to use it ?
 
