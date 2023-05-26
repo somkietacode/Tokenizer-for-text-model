@@ -34,6 +34,21 @@ class Tokenizer:
         if eos:
             t = t + [self.eos_id]
         return t
+    
+    def encode_with_padding(self, s: str, bos: bool, eos: bool, max_length: int) -> List[int]:
+        assert type(s) is str
+        t = self.sp_model.encode(s)
+        if bos:
+            t = [self.bos_id] + t
+        if eos:
+            t = t + [self.eos_id]
+        # Pad the sequence if its length is less than max_length
+        if len(t) < max_length:
+            t = t + [self.pad_id] * (max_length - len(t))
+        # Truncate the sequence if its length exceeds max_length
+        if len(t) > max_length:
+            t = t[:max_length]
+        return t
 
     def decode(self, t: List[int]) -> str:
         return self.sp_model.decode(t)
